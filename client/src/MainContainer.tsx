@@ -1,5 +1,5 @@
 import * as React from "react";
-import Menu from "./Menu/Menu";
+import Menu from "./MenuBar/MenuBar";
 
 export default class MainContainer extends React.Component<{}, {}> {
 	constructor(props) {
@@ -9,7 +9,11 @@ export default class MainContainer extends React.Component<{}, {}> {
 	render() {
 		return (
 			<div className="container-fluid">
-				<Menu />
+				<div className="row justify-content-center">
+					<div className="col-md-10">
+						<Menu />
+					</div>
+				</div>
 			</div>
 		);
 	}

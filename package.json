@@ -1,0 +1,22 @@
+{
+  "name": "woutermolofficial",
+  "version": "1.0.0",
+  "description": "Official Wouter Mol website.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node build/Server.js",
+    "watch": "cd client && npm run watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "cd client && npm run webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VictrumMaximum/woutermolofficial.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VictrumMaximum/woutermolofficial/issues"
+  },
+  "homepage": "https://github.com/VictrumMaximum/woutermolofficial#readme"
+}

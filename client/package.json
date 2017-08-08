@@ -4,7 +4,6 @@
   "description": "Official Wouter Mol website.",
   "main": "index.js",
   "scripts": {
-    "start": "node ../build/Server.js",
     "watch": "webpack-dev-server --progress --color --content-base /build/ --inline --hot",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --progress --color --display-error-details"

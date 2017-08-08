@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const style = require("../styles/menu.less");
+const style = require("../styles/menuBar.less");
 
 interface OptionProps {
     title: string;
