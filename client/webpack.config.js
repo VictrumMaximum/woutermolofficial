@@ -73,7 +73,7 @@ const config = {
 
 const startPageConfig = Object.assign({}, config, {
     context: path.join(__dirname),
-    entry: "./index.tsx",
+    entry: "./src/index.tsx",
     output: {
         filename: "startpage.bundle.js",
         path: __dirname + "/../build/client/"
@@ -81,7 +81,7 @@ const startPageConfig = Object.assign({}, config, {
 
     plugins: [
         new HTMLWebpackPlugin({
-            template: "./index.html"
+            template: "./src/index.html"
         }),
         new ExtractTextPlugin("style.css"),
         new webpack.ProvidePlugin({
