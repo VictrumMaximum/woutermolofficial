@@ -76,7 +76,7 @@ const startPageConfig = Object.assign({}, config, {
     entry: "./src/index.tsx",
     output: {
         filename: "startpage.bundle.js",
-        path: __dirname + "/../build/client/"
+        path: __dirname + "/../build/server/client/"
     },
 
     plugins: [
