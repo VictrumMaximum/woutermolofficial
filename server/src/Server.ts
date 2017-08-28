@@ -13,7 +13,7 @@ const pool = mysql.createPool({
 });
 
 const app = express();
-const port = 3005;
+const port = 80;
 
 function getConnection(): any {
 	return new Promise((resolve, reject) => {
