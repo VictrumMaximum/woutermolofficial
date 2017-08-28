@@ -22,7 +22,6 @@
   "homepage": "https://github.com/VictrumMaximum/woutermolofficial#readme",
   "dependencies": {
     "@types/jquery": "^3.2.11",
-    "@types/moment": "^2.13.0",
     "@types/mysql": "0.0.34",
     "@types/node": "^8.0.25",
     "@types/react": "^16.0.1",
