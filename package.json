@@ -39,6 +39,7 @@
     "moment": "2.18.1",
     "mysql": "2.14.1",
     "nodemon": "1.11.0",
+    "querybuilder": "^1.1.0",
     "react": "15.6.1",
     "react-dom": "15.6.1",
     "react-redux": "5.0.6",
