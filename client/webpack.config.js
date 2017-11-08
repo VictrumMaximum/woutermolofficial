@@ -5,11 +5,11 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const pages = [
     "Tour",
-    "Bio",
-    "OutOfSkin",
-    "Press",
-    "Contact",
-    "TourMenu"
+    // "Bio",
+    // "OutOfSkin",
+    // "Press",
+    // "Contact",
+    // "TourMenu"
 ];
 
 const config = {

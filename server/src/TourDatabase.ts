@@ -20,7 +20,7 @@ export default class TourDatabase {
 			establishment: query.establishment
 		}).from("tours").call();
 
-		return this.queryDatabase(query);
+		return this.queryDatabase(dbQuery); // shouldn't this be dbQuery?
 	}
 
 	public fetchTours(): Promise<any> {
@@ -52,8 +52,9 @@ export default class TourDatabase {
 			console.log("Executing query: " + query);
 			this.getConnection()
 				.then((connection) => {
+				console.log("got connection");
 					connection.query(query, function (error, results, fields) {
-						// make connection available for pool again, but don't destroy it.
+						// make connection available for pool again, but doesn't destroy it.
 						connection.release();
 						if (error) {
 							console.log("Database query failed with error " + JSON.stringify(error, null, 2));
@@ -64,6 +65,9 @@ export default class TourDatabase {
 							resolve(results);
 						}
 					});
+				}).catch((error) => {
+					// propagate the error
+					reject(error);
 				});
 		});
 	}

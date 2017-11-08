@@ -55,10 +55,10 @@ app.get("/addTour", (req, res) => {
 			console.log("Added tour");
 			res.end();
 		}).catch((error) => {
-		console.log("Adding tour errored with error " + JSON.stringify(error, null, 2));
-		res.end(JSON.stringify({
-			error
-		}));
+			console.log("Adding tour errored with error " + JSON.stringify(error, null, 2));
+			res.end(JSON.stringify({
+				error: error
+			}));
 	});
 });
 
@@ -70,9 +70,10 @@ app.get("/fetchTours", (req, res) => {
 				tours
 			}));
 		}).catch((error) => {
-		res.end(JSON.stringify({
-			error
-		}));
+			console.log("caught error fetching tours");
+			res.end(JSON.stringify({
+				error: error
+			}));
 	});
 });
 
@@ -84,9 +85,9 @@ app.get("/deleteTour", (req, res) => {
 		.then(() => {
 			res.end();
 		}).catch((error) => {
-		res.end(JSON.stringify({
-			error
-		}));
+			res.end(JSON.stringify({
+				error
+			}));
 	});
 });
 
