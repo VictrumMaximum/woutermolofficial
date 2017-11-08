@@ -1,6 +1,6 @@
 import * as React from "react";
-import Menu from "../MenuBar/MenuBar";
-import TourContainer from "../Tour/TourContainer";
+import Menu from "../Static/MenuBar/MenuBar";
+import TourContainer from "../TourMenu/MainContainer";
 import MusicContainer from "../MusicContainer";
 require("../../media/images/tour.jpg");
 

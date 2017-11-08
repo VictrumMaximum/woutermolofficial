@@ -8,7 +8,8 @@ const pages = [
     "Bio",
     "OutOfSkin",
     "Press",
-    "Contact"
+    "Contact",
+    "TourMenu"
 ];
 
 const config = {

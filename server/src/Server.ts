@@ -35,11 +35,17 @@ app.get("/contact", (req, res) => {
 	res.sendFile(__dirname + "/client/Contact/index.html");
 });
 
+app.get("/tourmenu", (req, res) => {
+	console.log("Client requested tourmenu");
+	res.sendFile(__dirname + "/client/Tourmenu/index.html");
+});
+
 app.use(express.static(__dirname + "/client/Tour/"));
 app.use(express.static(__dirname + "/client/Bio/"));
 app.use(express.static(__dirname + "/client/OutOfSkin/"));
 app.use(express.static(__dirname + "/client/Press/"));
 app.use(express.static(__dirname + "/client/Contact/"));
+app.use(express.static(__dirname + "/client/TourMenu/"));
 
 app.get("/addTour", (req, res) => {
 	console.log("Received request to add tour");

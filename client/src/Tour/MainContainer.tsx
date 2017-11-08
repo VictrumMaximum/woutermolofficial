@@ -1,7 +1,7 @@
 import * as React from "react";
-import Menu from "../MenuBar/MenuBar";
-import MusicContainer from "../MusicContainer";
+import Static from "../Static/Static";
 require("../../media/images/tour.jpg");
+const styles = require("../generalStyles.less");
 
 export default class MainContainer extends React.Component<{}, {}> {
 	constructor(props) {
@@ -13,15 +13,10 @@ export default class MainContainer extends React.Component<{}, {}> {
 		const fullBackgroundPath = "url(" + backgroundPath + ")";
 
 		return (
-			<div className="container-fluid">
-				<img src="../../media/images/tour.jpg" />
+			<div className={"container-fluid " + styles.background} style={{backgroundImage: "url(./images/tour.jpg)"}}>
 				<div className="row justify-content-center" style={{height: "100vh", backgroundImage: fullBackgroundPath}}>
-					<Menu />
-					{/*<div>*/}
-						{/*<TourContainer />*/}
-					{/*</div>*/}
-					<div>
-						<MusicContainer />
+					<div className={"col-12"}>
+						<Static />
 					</div>
 				</div>
 			</div>

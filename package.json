@@ -7,7 +7,7 @@
     "start": "nodemon build/server/Server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --progress --color --display-error-details --config client/webpack.config.js",
-    "watch": "webpack-dev-server --progress --color --content-base /build/ --inline --hot",
+    "watch": "webpack-dev-server --config client/webpack.config.js --progress --color --content-base /build/ --inline --hot",
     "tsc": "tsc --project ./server/"
   },
   "repository": {
