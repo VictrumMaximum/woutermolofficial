@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const style = require("./styles/menuBar.less");
+const style = require("./menuBar.less");
 
 interface OptionProps {
     title: string;
@@ -19,7 +19,7 @@ export default class Option extends React.Component<OptionProps, {}> {
     render() {
         return (
             <div className={"col-2 " + style.menuOption} onClick={() => {this.onClick(this.props.route)}}>
-                {this.props.title}
+				<h3>{this.props.title}</h3>
             </div>
         );
     }

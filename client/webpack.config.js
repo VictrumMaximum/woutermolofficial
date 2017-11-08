@@ -2,6 +2,8 @@ const path = require("path");
 const webpack = require("webpack");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 
 const pages = [
     "Tour",
@@ -90,6 +92,15 @@ module.exports = pages.map((page) => {
         },
 
         plugins: [
+            new webpack.DefinePlugin({ // <-- key to reducing React's size
+                'process.env': {
+                    'NODE_ENV': JSON.stringify('production')
+                }
+            }),
+            new webpack.optimize.UglifyJsPlugin(), //minify everything
+            new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
+            new ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
+            // new BundleAnalyzerPlugin(),
             new HTMLWebpackPlugin({
                 template: "./src/" + page + "/index.html"
             }),
