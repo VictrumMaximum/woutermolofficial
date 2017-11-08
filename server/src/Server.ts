@@ -1,72 +1,54 @@
 import * as express from "express";
-import {Promise} from "es6-promise";
-import * as mysql from "mysql";
-import * as QueryBuilder from "querybuilder";
+const app = express();
+const port = 80;
 
-const qb = new QueryBuilder("mysql");
-
-const pool = mysql.createPool({
+import TourDatabase from "./TourDatabase";
+const tourDB = new TourDatabase({
 	host     : 'localhost',
 	user     : 'root',
 	password : 'root',
 	database : 'woutermolofficial'
 });
 
-const app = express();
-const port = 80;
-
-function getConnection(): any {
-	return new Promise((resolve, reject) => {
-		pool.getConnection((err, connection) => {
-			if (err) {
-				reject(err);
-			}
-			else {
-				resolve(connection);
-			}
-		});
-	});
-}
-
-function queryDatabase(connection, query: string) {
-	return new Promise((resolve, reject) => {
-		console.log("Executing query: " + query);
-		connection.query(query, function (error, results, fields) {
-			// make connection available for pool again, but don't destroy it.
-			connection.release();
-			if (error) {
-				reject(error);
-			}
-			else {
-				resolve(results);
-			}
-		});
-	});
-}
-
 app.get("/", (req, res) => {
-	console.log("Client requested homepage");
-	res.sendFile(__dirname + "/client/index.html");
+	console.log("Client requested tourpage");
+	res.sendFile(__dirname + "/client/Tour/index.html");
 });
 
-app.use(express.static(__dirname + "/client/"));
+app.get("/bio", (req, res) => {
+	console.log("Client requested biopage");
+	res.sendFile(__dirname + "/client/Bio/index.html");
+});
+
+app.get("/outofskin", (req, res) => {
+	console.log("Client requested albumpage");
+	res.sendFile(__dirname + "/client/OutOfSkin/index.html");
+});
+
+app.get("/press", (req, res) => {
+	console.log("Client requested presspage");
+	res.sendFile(__dirname + "/client/Press/index.html");
+});
+
+app.get("/contact", (req, res) => {
+	console.log("Client requested contactpage");
+	res.sendFile(__dirname + "/client/Contact/index.html");
+});
+
+app.use(express.static(__dirname + "/client/Tour/"));
+app.use(express.static(__dirname + "/client/Bio/"));
+app.use(express.static(__dirname + "/client/OutOfSkin/"));
+app.use(express.static(__dirname + "/client/Press/"));
+app.use(express.static(__dirname + "/client/Contact/"));
 
 app.get("/addTour", (req, res) => {
 	console.log("Received request to add tour");
 	console.log(req.query);
-	const query = qb.insert({
-		event: req.query.event,
-		begin: req.query.begin,
-		city: req.query.city,
-		establishment: req.query.establishment
-	}).from("tours").call();
-
-	getConnection().then((connection) => {
-		return queryDatabase(connection, query);
-	}).then(() => {
-		console.log("Added tour");
-		res.end();
-	}).catch((error) => {
+	tourDB.addTour(req.query)
+		.then(() => {
+			console.log("Added tour");
+			res.end();
+		}).catch((error) => {
 		console.log("Adding tour errored with error " + JSON.stringify(error, null, 2));
 		res.end(JSON.stringify({
 			error
@@ -76,16 +58,12 @@ app.get("/addTour", (req, res) => {
 
 app.get("/fetchTours", (req, res) => {
 	console.log("Received request to show tours");
-	getConnection().then((connection) => {
-		const query = "SELECT * FROM tours";
-		return queryDatabase(connection, query);
-	}).then((tours) => {
-		console.log("Database query succeeded");
-		res.end(JSON.stringify({
-			tours
-		}));
-	}).catch((error) => {
-		console.log("Database query failed with error " + JSON.stringify(error, null, 2));
+	tourDB.fetchTours()
+		.then((tours) => {
+			res.end(JSON.stringify({
+				tours
+			}));
+		}).catch((error) => {
 		res.end(JSON.stringify({
 			error
 		}));
@@ -96,14 +74,10 @@ app.get("/deleteTour", (req, res) => {
 	console.log("Received request to delete tour");
 	console.log(req.query);
 	const id = req.query.id;
-	getConnection().then((connection) => {
-		const query = "DELETE FROM tours WHERE id=" + connection.escape(id);
-		return queryDatabase(connection, query);
-	}).then(() => {
-		console.log("Database query succeeded");
-		res.end();
-	}).catch((error) => {
-		console.log("Database query failed with error " + JSON.stringify(error, null, 2));
+	tourDB.deleteTour(id)
+		.then(() => {
+			res.end();
+		}).catch((error) => {
 		res.end(JSON.stringify({
 			error
 		}));

@@ -3,6 +3,14 @@ const webpack = require("webpack");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+const pages = [
+    "Tour",
+    "Bio",
+    "OutOfSkin",
+    "Press",
+    "Contact"
+];
+
 const config = {
     // Enable sourcemaps for debugging webpack's output.
     devtool: "inline-source-map",
@@ -71,25 +79,23 @@ const config = {
     }
 };
 
-const startPageConfig = Object.assign({}, config, {
-    context: path.join(__dirname),
-    entry: "./src/index.tsx",
-    output: {
-        filename: "startpage.bundle.js",
-        path: __dirname + "/../build/server/client/"
-    },
+module.exports = pages.map((page) => {
+    return Object.assign({}, config, {
+        context: path.join(__dirname),
+        entry: "./src/" + page + "/index.tsx",
+        output: {
+            filename: page + ".bundle.js",
+            path: __dirname + "/../build/server/client/" + page
+        },
 
-    plugins: [
-        new HTMLWebpackPlugin({
-            template: "./src/index.html"
-        }),
-        new ExtractTextPlugin("style.css"),
-        new webpack.ProvidePlugin({
-            React: "React", react: "React", "window.react": "React", "window.React": "React"
-        })
-    ]
+        plugins: [
+            new HTMLWebpackPlugin({
+                template: "./src/" + page + "/index.html"
+            }),
+            new ExtractTextPlugin("style.css"),
+            new webpack.ProvidePlugin({
+                React: "React", react: "React", "window.react": "React", "window.React": "React"
+            })
+        ]
+    });
 });
-
-module.exports = [
-  startPageConfig
-];

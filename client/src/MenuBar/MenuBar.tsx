@@ -1,5 +1,6 @@
 import * as React from "react";
 import Option from "./Option";
+
 const options = require("./menuOptions").default;
 
 export default class Menu extends React.Component<{}, {}> {
@@ -9,11 +10,14 @@ export default class Menu extends React.Component<{}, {}> {
     
     render() {
         return (
-            <div className="row justify-content-center">
-                {Object.keys(options).map((option) => {
-                    return <Option title={options[option].title}/>
-                })}
-            </div>
+
+				<div className="col-md-10">
+					<div className="row justify-content-center">
+						{Object.keys(options).map((option) => {
+							return <Option title={options[option].title} route={options[option].route}/>
+						})}
+					</div>
+				</div>
         );
     }
 }

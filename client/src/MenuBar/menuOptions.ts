@@ -1,17 +1,22 @@
 export default {
 	home: {
-		title: "Home"
+		title: "Home",
+		route: ""
 	},
 	bio: {
-		title: "Bio"
+		title: "Bio",
+		route: "bio"
 	},
 	outOfSkin: {
-		title: "Out of Skin"
+		title: "Out of Skin",
+		route: "outofskin"
 	},
 	press: {
-		title: "Press"
+		title: "Press",
+		route: "press"
 	},
 	contact: {
-		title: "Contact"
+		title: "Contact",
+		route: "contact"
 	}
 };
